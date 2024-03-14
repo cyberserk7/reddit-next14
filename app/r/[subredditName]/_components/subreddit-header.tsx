@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import SubredditJoinBtn from "./subreddit-join-btn";
 import Image from "next/image";
-import EditCoverImageBtn from "./edit-cover-image-btn";
+import EditSubredditBtn from "./edit-subreddit-btn";
 
 interface SubredditPageHeaderProps {
     subredditName: string;
@@ -47,7 +47,7 @@ const SubredditPageHeader = async ({ subredditName } : SubredditPageHeaderProps)
                 src={subreddit.coverImageURL}
                 fill
                 alt="subreddit cover image"
-                className="object-cover "
+                className="object-cover rounded-lg"
                 priority
             />
         ) : (
@@ -55,12 +55,7 @@ const SubredditPageHeader = async ({ subredditName } : SubredditPageHeaderProps)
                Welcome to r/{subredditName}
             </span>
         )}
-        {/* Creator can change the avatar image and cover image */}
-        {isCreator && (
-            <>
-                <EditCoverImageBtn subredditName={subredditName} />
-            </>
-        )}
+        
         {/* This entire section is shifted down */}
         <div className="h-fit flex items-center gap-x-2 translate-y-1/2 w-full">
             <div className="h-fit w-fit">
@@ -70,6 +65,9 @@ const SubredditPageHeader = async ({ subredditName } : SubredditPageHeaderProps)
                 <span className="text-2xl font-medium">r/{subreddit?.name}</span>
                 <div className="flex gap-x-2">
                     <SubredditJoinBtn hasJoined={hasJoined} subredditName={subredditName} isCreator={isCreator} />
+                    {isCreator && <EditSubredditBtn subreddit={subreddit} />}
+            
+        
                 </div>
             </div>
         </div>

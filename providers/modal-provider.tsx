@@ -1,6 +1,7 @@
 "use client"
 
 import CreateCommunityModal from "@/components/modal/create-community-modal";
+import EditSubredditModal from "@/components/modal/edit-subreddit-modal";
 import AuthModal from "@/components/modal/login-modal"
 import MobileSidebar from "@/components/modal/mobile-sidebar";
 import SetUsernameModal from "@/components/modal/set-username-modal";
@@ -22,6 +23,7 @@ export const ModalProvider = () => {
             <MobileSidebar />
             <SetUsernameModal />
             <CreateCommunityModal />
+            <EditSubredditModal />
         </>
     )
 }
