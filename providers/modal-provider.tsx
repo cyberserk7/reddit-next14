@@ -20,7 +20,6 @@ export const ModalProvider = () => {
     return (
         <>
             <AuthModal />
-            <MobileSidebar />
             <SetUsernameModal />
             <CreateCommunityModal />
             <EditSubredditModal />

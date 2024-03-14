@@ -13,10 +13,11 @@ import { toast } from "sonner"
 import { z } from "zod"
 import { useRouter } from "next/navigation"
 import { Loader2 } from "lucide-react"
+import { useModal } from "@/hooks/use-modal-store"
 
 const CreateCommunityForm = () => {
     const [input, setInput] = useState("");
-    const communityModal = useCommunityModal();
+    const {onClose} = useModal();
     const router = useRouter();
 
     const hasWhitespace = () => {
@@ -50,8 +51,7 @@ const CreateCommunityForm = () => {
         },
         onSuccess: (data) => {
            router.push(`/r/${data}`);
-           communityModal.onClose();
-           location.reload();
+           onClose();
         }
     })
 
@@ -90,7 +90,7 @@ const CreateCommunityForm = () => {
       <div className="flex items-center w-full gap-3">
         <Button
           className="w-full bg-[#1A282D] hover:bg-[#223339]"
-          onClick={() => communityModal.onClose()}
+          onClick={() => onClose()}
           disabled={isPending}
         >
           Cancel

@@ -59,7 +59,7 @@ const SubredditPageHeader = async ({ subredditName } : SubredditPageHeaderProps)
         {/* This entire section is shifted down */}
         <div className="h-fit flex items-center gap-x-2 translate-y-1/2 w-full">
             <div className="h-fit w-fit">
-                <SubredditAvatar imageUrl={subreddit.subredditImageURL} subredditName={subreddit.name} className="border-4 lg:border-8 h-20 md:h-24 lg:h-28 border-background text-3xl md:text-4xl lg:text-5xl" />
+                <SubredditAvatar imageUrl={subreddit.subredditImageURL} subredditName={subreddit.name} className="border-4 lg:border-8 h-24 md:h-28 lg:h-32 border-background text-3xl md:text-4xl lg:text-5xl" />
             </div>
             <div className="h-fit w-full translate-y-2/3 flex justify-between items-center">
                 <span className="text-2xl font-medium">r/{subreddit?.name}</span>

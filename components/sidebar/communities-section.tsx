@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { useCommunityModal } from "@/hooks/use-community-modal"
+
 import { useSheet } from "@/hooks/use-hamburger"
 import { Subreddit } from "@prisma/client"
 import { useQuery } from "@tanstack/react-query"
@@ -16,11 +16,12 @@ import { Skeleton } from "../ui/skeleton"
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import SubredditAvatar from "../subreddit-avatar"
+import { useModal } from "@/hooks/use-modal-store"
 
 
 const CommunitiesSection = () => {
   const sheet = useSheet();
-  const communityModal = useCommunityModal();
+  const { onOpen } = useModal(); 
   const router = useRouter();
 
   const {data, isFetching, refetch} = useQuery({
@@ -50,7 +51,7 @@ const CommunitiesSection = () => {
             className="flex items-center font-normal hover:bg-[#131F23] cursor-pointer"
             onClick={() => {
               sheet.onClose();
-              communityModal.onOpen();
+              onOpen("createCommunity");
             }}
           >
             <Image

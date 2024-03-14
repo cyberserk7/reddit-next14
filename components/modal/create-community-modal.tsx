@@ -4,13 +4,15 @@ import {
     Dialog,
     DialogContent,
 } from "@/components/ui/dialog"
-import { useCommunityModal } from "@/hooks/use-community-modal"
 import CreateCommunityForm from "../forms/create-community-form";
+import { useModal } from "@/hooks/use-modal-store";
 
 const CreateCommunityModal = () => {
-    const communityModal = useCommunityModal();
+    const {onClose, isOpen, type} = useModal();
+    const showModal = isOpen && type === "createCommunity"
+
   return (
-    <Dialog open={communityModal.isOpen} onOpenChange={communityModal.onClose}>
+    <Dialog open={showModal} onOpenChange={onClose}>
       <DialogContent className="bg-[#0B1416] border-none outline-none">
           <CreateCommunityForm />    
       </DialogContent>

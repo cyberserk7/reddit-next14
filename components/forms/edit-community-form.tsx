@@ -58,7 +58,7 @@ const EditCommunityForm = ({ subreddit } : EditCommunityFormProps) => {
         },
         onSuccess:() => {
             onClose();
-            window.location.reload(); 
+            router.refresh();
         }
     })
 

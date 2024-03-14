@@ -1,15 +1,26 @@
-"use client"
+import { Menu } from "lucide-react"
 
-import { useSheet } from "@/hooks/use-hamburger";
-import { AlignJustify } from "lucide-react"
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+import { Button } from "../ui/button"
+import LeftSidebar from "./left-sidebar"
 
 const MobileSidebarButton = () => {
-    const sheet = useSheet();
     
   return (
-    <button className="lg:hidden" onClick={sheet.onOpen}>
-        <AlignJustify />
-    </button>
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button size="icon" className="lg:hidden w-max h-max bg-transparent hover:bg-transparent">
+          <Menu />
+        </Button>
+      </SheetTrigger>
+      <SheetContent side={"left"} className="py-0">
+        <LeftSidebar />
+      </SheetContent>
+    </Sheet>
   )
 }
 
