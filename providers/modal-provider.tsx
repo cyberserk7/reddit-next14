@@ -3,7 +3,7 @@
 import CreateCommunityModal from "@/components/modal/create-community-modal";
 import EditSubredditModal from "@/components/modal/edit-subreddit-modal";
 import AuthModal from "@/components/modal/login-modal"
-import MobileSidebar from "@/components/modal/mobile-sidebar";
+import PostImageUploadModal from "@/components/modal/post-image-upload-modal";
 import SetUsernameModal from "@/components/modal/set-username-modal";
 import { useEffect, useState } from "react"
 

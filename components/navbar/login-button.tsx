@@ -1,14 +1,14 @@
 "use client"
-import { useAuth } from "@/hooks/use-auth";
 import { Button } from "../ui/button";
+import { useModal } from "@/hooks/use-modal-store";
 
 
 const LoginButton = () => {
 
-    const auth = useAuth();
+  const {onOpen} = useModal();
 
   return (
-    <Button className="rounded-full h-9 md:h-10" onClick={auth.onOpen}>
+    <Button className="rounded-full h-9 md:h-10" onClick={() => onOpen("auth")}>
         Login
     </Button>
   )

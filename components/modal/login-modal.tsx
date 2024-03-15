@@ -11,10 +11,12 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { toast } from "sonner";
 import { Loader } from "lucide-react";
+import { useModal } from "@/hooks/use-modal-store";
 
 const AuthModal = () => {
-  const auth = useAuth();
   const [loading, setLoading] = useState(false);
+  const {isOpen, onClose, type} = useModal();
+  const showModal = isOpen && type === "auth"
 
   const authLogin = async (str: string) => {
     setLoading(true);
@@ -28,7 +30,7 @@ const AuthModal = () => {
   }
 
   return (
-    <Dialog open={auth.isOpen} onOpenChange={auth.onClose}>
+    <Dialog open={showModal} onOpenChange={onClose}>
       <DialogContent className="bg-[#0B1416] border-none outline-none">
           <div className="flex flex-col gap-1">
             <h1 className="text-lg font-semibold">Log In</h1>
