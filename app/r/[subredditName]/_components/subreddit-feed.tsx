@@ -21,6 +21,9 @@ const SubredditFeed = async ({subredditName} : SubredditFeedProps) => {
 
   return (
     <>
+        {posts.map((post) => {
+            
+        })}
     </>
   )
 }
