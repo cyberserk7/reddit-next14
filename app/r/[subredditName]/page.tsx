@@ -1,8 +1,9 @@
 import { Suspense } from "react";
 import SubredditPageHeader from "./_components/subreddit-header";
 import { Skeleton } from "@/components/ui/skeleton";
+import SubredditFeed from "./_components/subreddit-feed";
 
-const SubredditPage = async ({
+const SubredditPage =  ({
     params,
 } : {
     params: {
@@ -19,6 +20,13 @@ const SubredditPage = async ({
       }>
         <SubredditPageHeader subredditName={params.subredditName} />
       </Suspense>
+      <div className="w-full h-fit mt-20 flex flex-col-reverse lg:flex-row">
+        <div className="w-full">
+          <Suspense>
+            <SubredditFeed subredditName={params.subredditName} />
+          </Suspense>
+        </div>
+      </div>
     </div>
   )
 }

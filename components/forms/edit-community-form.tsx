@@ -1,7 +1,7 @@
 "use client"
 
 import { Subreddit } from "@prisma/client"
-import { Loader, X } from "lucide-react";
+import { Loader, Loader2, PlusCircle, X, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { UploadDropzone } from "@/lib/uploadthing";
@@ -21,6 +21,9 @@ interface EditCommunityFormProps {
 const EditCommunityForm = ({ subreddit } : EditCommunityFormProps) => {
     const [subredditImageURL, setSubredditImageURL] = useState<string | null>(null);
     const [coverImageURL, setCoverImageURL] = useState<string | null>(null);
+    const [isSubredditImageEditing, setIsSubredditImageEditing] = useState(false);
+    const [isCoverImageEdit, setCoverImageEdit] = useState(false);
+    const[hasEdited, setHasEdited] = useState(false);
     const {onClose} = useModal();
     const router = useRouter();
 
@@ -63,84 +66,80 @@ const EditCommunityForm = ({ subreddit } : EditCommunityFormProps) => {
     })
 
   return (
-    <div className="w-full space-y-2">
-        <h1 className="text-lg font-medium">Edit community</h1>
-        <div className="w-full flex justify-center flex-col items-center gap-4">
-            {subredditImageURL ? (
-                <>
-                    <div 
-                        className="h-24 w-max aspect-square rounded-full bg-skeleton relative overflow-hidden flex justify-center items-center group cursor-pointer"
-                        onClick={() => setSubredditImageURL(null)}
-                    >
-                        <Image 
-                            src={subredditImageURL}
-                            fill
-                            className="object-cover group-hover:blur-sm transition"
-                            alt=""
-                            priority
-                        />
-                        <span className="z-10 font-medium hidden group-hover:block">
-                            <X className="h-10 w-10" />
-                        </span>           
-                    </div>
-                    <span className="text-sm">Community Avatar</span>
-                </>
-
-            ) : (
-                <div className="flex flex-col w-full">
-                    <span className="text-sm self-start">Community Avatar</span>
-                    <UploadDropzone 
-                        className="cursor-pointer"
-                        endpoint="subredditImage"
-                        onClientUploadComplete={(res) => {
-                            setSubredditImageURL(res[0].url);
-                        }}
-                    />
-                </div>
-            )}
-            {coverImageURL ? (
-                <>
-                    <div 
-                        className="w-full rounded-lg bg-skeleton overflow-hidden h-24 relative group flex justify-center items-center cursor-pointer"
+    <div className="w-full space-y-5">
+        <h1 className="text-lg font-medium">Community settings</h1>
+        <div className="w-full space-y-5">
+            <div className="w-full space-y-2">
+                <div className="w-full flex justify-between items-center">
+                    <span className="text-xs">Subreddit Avatar</span>
+                    <Button 
+                        className="h-max w-max p-0 text-xs bg-skeleton hover:bg-skeleton/90 px-3 py-1 flex gap-1"
                         onClick={() => {
-                            setCoverImageURL(null);
+                            if(subredditImageURL) {
+                                setSubredditImageURL(null);
+                            } else {
+                                setIsSubredditImageEditing(true);
+                            } 
+                            if(isSubredditImageEditing) {
+                                setIsSubredditImageEditing(false);
+                            }
+                            setHasEdited(true);
                         }}
                     >
-                        <Image 
-                            src={coverImageURL}
-                            className="object-cover group-hover:blur-sm"
-                            alt="subreddit cover image"
-                            fill
-                        />
-                        <span className="z-10 font-medium hidden group-hover:block">
-                            <X className="h-10 w-10" />
-                        </span>     
-                    </div>  
-                    <span className="text-sm">Community Cover</span>
-                </>
-            ) : (
-                <div className="flex flex-col w-full">
-                    <span className="text-sm self-start">Community Cover Image</span>
-                    <UploadDropzone 
-                        className="cursor-pointer"
-                        endpoint="subredditCoverImage"
-                        onClientUploadComplete={(res) => {
-                            setCoverImageURL(res[0].url);
-                        }}
-                    />
+                        {!isSubredditImageEditing ? (subredditImageURL ? "Remove" : "Add") : "Cancel"}
+                    </Button>
                 </div>
-            )}
-            <div className="flex w-full gap-2 mt-5">
-                <Button className="bg-skeleton hover:bg-skeleton/90 w-full" onClick={() => {
-                    onClose(); 
-                }}
+                {isSubredditImageEditing && <UploadDropzone
+                    endpoint="subredditImage"
+                    className="cursor-pointer"
+                    onClientUploadComplete={(res) => {
+                        setSubredditImageURL(res[0].url);
+                        setIsSubredditImageEditing(false);
+                    }}
+                />}
+                <div className="w-full flex justify-between items-center">
+                    <span className="text-xs">Subreddit Cover</span>
+                    <Button 
+                        className="h-max w-max p-0 text-xs bg-skeleton hover:bg-skeleton/90 px-3 py-1"
+                        onClick={() => {
+                            if(coverImageURL) {
+                                setCoverImageURL(null);
+                            } else {
+                                setCoverImageEdit(true);
+                            } 
+                            if(isCoverImageEdit) {
+                                setCoverImageEdit(false);
+                            }
+                            setHasEdited(true);
+                        }}
+                    >
+                        {!isCoverImageEdit ? (coverImageURL ? "Remove" : "Add") : "Cancel"}
+                    </Button>
+                </div>
+                {isCoverImageEdit && <UploadDropzone
+                    endpoint="subredditCoverImage"
+                    className="cursor-pointer"
+                    onClientUploadComplete={(res) => {
+                        setCoverImageURL(res[0].url);
+                        setCoverImageEdit(false);
+                    }}
+                />}
+            </div>
+            <div className="w-full flex gap-2">
+                <Button 
+                    className="bg-skeleton hover:bg-skeleton/90 w-full" 
+                    onClick={() => onClose()}
                     disabled={isPending}
                 >
                     Cancel
                 </Button>
-                <Button className="w-full flex items-center" disabled={isPending} onClick={() => EditCommunity()}>
-                    {isPending && <Loader className="w-4 h-4 mr-2 animate-spin" />}
-                    Submit
+                <Button 
+                    className="bg-blue-500 hover:bg-blue/90 w-full flex"
+                    onClick={() => EditCommunity()}
+                    disabled={isPending || !hasEdited}
+                >
+                    {isPending && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
+                    Save
                 </Button>
             </div>
         </div>
