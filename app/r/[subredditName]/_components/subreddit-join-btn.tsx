@@ -11,16 +11,17 @@ interface SubredditJoinBtnProps {
     hasJoined: boolean;
     subredditName: string;
     isCreator: boolean;
+    className?: string;
 }
 
-const SubredditJoinBtn = ({hasJoined, subredditName, isCreator} : SubredditJoinBtnProps) => {
+const SubredditJoinBtn = ({hasJoined, subredditName, isCreator , className} : SubredditJoinBtnProps) => {
     const {onOpen} = useModal();
     const {data: session} = useSession();
   return (
     <Button 
         size={"sm"} 
         className={cn("px-3 rounded-full bg-blue-500 hover:bg-blue-500/90",
-        hasJoined && "bg-gray-400 text-gray-200")}
+        hasJoined && "bg-gray-400 text-gray-200", className)}
         disabled={isCreator}
         onClick={() => {
             if(!session) {

@@ -28,3 +28,12 @@ export const editSubredditSchema = z.object({
 })
 
 export type editSubredditPayload = z.infer<typeof editSubredditSchema>;
+
+export const createPostSchema = z.object({
+    title: z.string().min(1),
+    caption: z.string().min(1),
+    imageURL: z.string().nullable(),
+    videoURL: z.string().nullable(),
+})
+
+export type createPostPayload = z.infer<typeof createPostSchema>;

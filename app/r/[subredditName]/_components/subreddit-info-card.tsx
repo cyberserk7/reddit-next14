@@ -57,6 +57,7 @@ const SubredditInfoCard = async ({subredditName} : SubredditInfoCardProps) => {
           isCreator={isCreator}
           subredditName={subredditName}
           hasJoined={hasJoined}
+          className="w-max px-2 py-1 h-max text-xs"
         />
       </div>
       <div className="flex flex-col gap-5">
