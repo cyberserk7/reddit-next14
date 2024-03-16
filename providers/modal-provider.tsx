@@ -1,6 +1,7 @@
 "use client"
 
 import CreateCommunityModal from "@/components/modal/create-community-modal";
+import DeleteCommunityModal from "@/components/modal/delete-community-modal";
 import EditSubredditModal from "@/components/modal/edit-subreddit-modal";
 import AuthModal from "@/components/modal/login-modal"
 import PostImageUploadModal from "@/components/modal/post-image-upload-modal";
@@ -23,6 +24,7 @@ export const ModalProvider = () => {
             <SetUsernameModal />
             <CreateCommunityModal />
             <EditSubredditModal />
+            <DeleteCommunityModal />
         </>
     )
 }

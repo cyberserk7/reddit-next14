@@ -3,6 +3,7 @@ import SubredditPageHeader from "./_components/subreddit-header";
 import { Skeleton } from "@/components/ui/skeleton";
 import SubredditFeed from "./_components/subreddit-feed";
 import SubredditInfoCard from "./_components/subreddit-info-card";
+import FeedSkeleton from "@/components/skeletons/feed-skeleton";
 
 const SubredditPage =  ({
     params,
@@ -23,7 +24,9 @@ const SubredditPage =  ({
       </Suspense>
       <div className="w-full h-fit mt-20 flex flex-col-reverse lg:flex-row justify-between gap-5">
         <div className="w-full lg:w-[65%]">
-          <Suspense>
+          <Suspense fallback={
+            <FeedSkeleton />
+          }>
             <SubredditFeed subredditName={params.subredditName} />
           </Suspense>
         </div>

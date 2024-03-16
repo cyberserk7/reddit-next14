@@ -71,7 +71,7 @@ const EditCommunityForm = ({ subreddit } : EditCommunityFormProps) => {
         <div className="w-full space-y-5">
             <div className="w-full space-y-2">
                 <div className="w-full flex justify-between items-center">
-                    <span className="text-xs">Subreddit Avatar</span>
+                    <span className="text-xs">Community Avatar</span>
                     <Button 
                         className="h-max w-max p-0 text-xs bg-skeleton hover:bg-skeleton/90 px-3 py-1 flex gap-1"
                         onClick={() => {
@@ -98,7 +98,7 @@ const EditCommunityForm = ({ subreddit } : EditCommunityFormProps) => {
                     }}
                 />}
                 <div className="w-full flex justify-between items-center">
-                    <span className="text-xs">Subreddit Cover</span>
+                    <span className="text-xs">Community Cover</span>
                     <Button 
                         className="h-max w-max p-0 text-xs bg-skeleton hover:bg-skeleton/90 px-3 py-1"
                         onClick={() => {
@@ -124,6 +124,7 @@ const EditCommunityForm = ({ subreddit } : EditCommunityFormProps) => {
                         setCoverImageEdit(false);
                     }}
                 />}
+                
             </div>
             <div className="w-full flex gap-2">
                 <Button 

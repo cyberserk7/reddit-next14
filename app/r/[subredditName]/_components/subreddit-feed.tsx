@@ -2,6 +2,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import PostComponent from "@/components/post-component";
 import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";
+import { notFound } from "next/navigation";
 
 interface SubredditFeedProps {
     subredditName: string;
@@ -22,6 +23,18 @@ const SubredditFeed = async ({subredditName} : SubredditFeedProps) => {
             comments: true,
         }
     })
+
+    if(!posts) {
+        return notFound();
+    }
+
+    if(posts.length === 0) {
+        return (
+            <div className="w-full px-5 h-full flex items-center justify-center">
+                <h1 className="text-lg font-semibold text-muted-foreground">No posts to show</h1>
+            </div>
+        )
+    }
 
   return (
     <>

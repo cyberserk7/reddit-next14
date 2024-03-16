@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import SubredditJoinBtn from "./subreddit-join-btn";
 import Image from "next/image";
 import EditSubredditBtn from "./edit-subreddit-btn";
+import DeleteSubredditBtn from "./delete-subreddit-btn";
 
 interface SubredditPageHeaderProps {
     subredditName: string;
@@ -66,8 +67,7 @@ const SubredditPageHeader = async ({ subredditName } : SubredditPageHeaderProps)
                 <div className="flex gap-x-2">
                     <SubredditJoinBtn hasJoined={hasJoined} subredditName={subredditName} isCreator={isCreator} />
                     {isCreator && <EditSubredditBtn subreddit={subreddit} />}
-            
-        
+                    {isCreator && <DeleteSubredditBtn subredditName={subredditName} />}
                 </div>
             </div>
         </div>
