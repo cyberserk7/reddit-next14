@@ -55,6 +55,7 @@ const CreatePostForm = ({subredditName}: CreatePostProps) => {
         },
         onSuccess: () => {
            router.push(`/r/${subredditName}`);
+           router.refresh();
         }
     })
 

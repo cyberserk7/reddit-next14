@@ -11,7 +11,7 @@ interface UserAvatarProps {
 const UserAvatar = ({imageUrl, className} : UserAvatarProps) => {
 
   return (
-    <div className={cn("h-10 w-10 rounded-full relative overflow-hidden", className)}>
+    <div className={cn("h-10 rounded-full relative overflow-hidden aspect-square w-max", className)}>
         <Image 
             src={imageUrl}
             height={500}
