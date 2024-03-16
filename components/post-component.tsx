@@ -8,6 +8,7 @@ import { FaRegMessage } from "react-icons/fa6";
 import UserAvatar from "./user-avatar";
 import { useSession } from "next-auth/react";
 import PostDropdownBtn from "./post/post-dropdown-btn";
+import PostVoteClient from "./post/vote-client";
 
 type PartialVote = Pick<Vote, "type">;
 
@@ -137,11 +138,11 @@ const PostComponent = ({
             </>
           )}
           <div className="flex items-center gap-3">
-            {/* <PostVoteClient
+            <PostVoteClient
               postId={post.id}
-              initialVotesAmt={votesAmt}
+              initialVotesAmt={voteAmount}
               initialVote={currentVote?.type}
-            /> */}
+            />
             <a
               className="rounded-full bg-[#1A282D] flex gap-2 items-center px-3 py-1.5 hover:bg-[#223237] transition cursor-pointer"
               href={`/r/${post.subreddit.name}/${post.id}`}

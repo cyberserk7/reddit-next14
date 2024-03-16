@@ -50,8 +50,9 @@ const CreateCommunityForm = () => {
             }
         },
         onSuccess: (data) => {
-           router.push(`/r/${data}`);
-           onClose();
+          onClose();
+          router.push(`/r/${data}`);
+          router.refresh();
         }
     })
 

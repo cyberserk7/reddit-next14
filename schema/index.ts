@@ -1,3 +1,4 @@
+import { VoteType } from "@prisma/client";
 import * as z from "zod"
 
 export const usernameSchema = z.object({
@@ -37,3 +38,10 @@ export const createPostSchema = z.object({
 })
 
 export type createPostPayload = z.infer<typeof createPostSchema>;
+
+export const postVoteSchema = z.object({
+    postId: z.string(),
+    voteType: z.enum(["UP", "DOWN"]),
+})
+
+export type postVotePayload = z.infer<typeof postVoteSchema>
