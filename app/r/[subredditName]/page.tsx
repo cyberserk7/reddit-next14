@@ -25,7 +25,7 @@ const SubredditPage =  ({
       <div className="w-full h-fit mt-20 flex flex-col-reverse lg:flex-row justify-between gap-5">
         <div className="w-full lg:w-[65%]">
           <Suspense fallback={
-            <FeedSkeleton />
+            <FeedSkeleton isSubredditPage={true} />
           }>
             <SubredditFeed subredditName={params.subredditName} />
           </Suspense>

@@ -21,6 +21,9 @@ const SubredditFeed = async ({subredditName} : SubredditFeedProps) => {
             subreddit: true,
             votes: true,
             comments: true,
+        },
+        orderBy: {
+            createdAt: "desc"
         }
     })
 
@@ -37,7 +40,7 @@ const SubredditFeed = async ({subredditName} : SubredditFeedProps) => {
     }
 
   return (
-    <>
+    <div className="space-y-2">
         {posts.map((post, index) => {
             const voteAmount = post.votes.reduce((acc, vote) => {
                 if(vote.type === "UP") return acc + 1;
@@ -61,7 +64,7 @@ const SubredditFeed = async ({subredditName} : SubredditFeedProps) => {
                 />
             )
         })}
-    </>
+    </div>
   )
 }
 

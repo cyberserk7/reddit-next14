@@ -40,7 +40,6 @@ export const createPostSchema = z.object({
 export type createPostPayload = z.infer<typeof createPostSchema>;
 
 export const postVoteSchema = z.object({
-    postId: z.string(),
     voteType: z.enum(["UP", "DOWN"]),
 })
 

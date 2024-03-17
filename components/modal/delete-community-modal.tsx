@@ -46,7 +46,7 @@ const DeleteCommunityModal = () => {
     <Dialog open={showModal} onOpenChange={onClose}>
       <DialogContent className="bg-[#0B1416] border-none outline-none space-y-0">
             <h1 className="text-lg font-medium">
-                Are you absolutely sure?
+                Delete Community
             </h1>   
             <span className="text-sm text-gray-400">This action cannot be undone and the data will be wiped from our servers.</span>
             <div className="w-full flex justify-end">

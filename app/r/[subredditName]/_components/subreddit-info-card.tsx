@@ -50,7 +50,7 @@ const SubredditInfoCard = async ({subredditName} : SubredditInfoCardProps) => {
     const isCreator = subreddit.creatorId === session?.user.id
 
   return (
-    <div className="w-full lg:w-80 h-fit sticky top-[64px] rounded-lg bg-[#04090A] px-5 py-3 space-y-2">
+    <div className="w-full lg:w-80 h-fit lg:sticky top-[84px] rounded-lg bg-[#04090A] px-5 py-3 space-y-2">
         <div className="flex items-center justify-between">
         <h1 className="font-semibold text-gray-300 text-lg">r/{subredditName}</h1>
         <SubredditJoinBtn

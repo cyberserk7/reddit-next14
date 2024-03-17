@@ -1,11 +1,13 @@
 "use client";
 
+import { useModal } from "@/hooks/use-modal-store";
 import { cn } from "@/lib/utils";
 import { postVotePayload } from "@/schema";
 import { usePrevious } from "@mantine/hooks";
 import { VoteType } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { TbArrowBigUp } from "react-icons/tb";
 import { TbArrowBigUpFilled } from "react-icons/tb";
@@ -24,6 +26,8 @@ const PostVoteClient = ({
   postId,
   initialVote,
 }: PostVoteClientProps) => {
+  const {data: session} = useSession();
+  const {onOpen} = useModal();
   const [votesAmt, setVotesAmt] = useState<number>(initialVotesAmt);
   const [currentVote, setCurrentVote] = useState(initialVote);
   const prevVote = usePrevious(currentVote);
@@ -35,11 +39,10 @@ const PostVoteClient = ({
   const { mutate: vote } = useMutation({
     mutationFn: async (voteType: VoteType) => {
       const payload: postVotePayload = {
-        postId: postId,
         voteType,
       };
 
-      await axios.patch("/api/subreddit/post/vote", payload);
+      await axios.patch(`/api/post/${postId}/vote`, payload);
     },
     onError: (err, voteType) => {
       if (voteType === "UP") {
@@ -84,7 +87,13 @@ const PostVoteClient = ({
           "hover:bg-[#223237] w-full h-full p-2 rounded-full transition cursor-pointer hover:text-[#FF4401] ",
           currentVote && "hover:bg-transparent"
         )}
-        onClick={() => vote("UP")}
+        onClick={() => {
+          if(session) {
+            vote("UP");
+          }else{
+            onOpen("auth")
+          }
+        }}
       >
         {currentVote === "UP" ? (
           <TbArrowBigUpFilled className="h-4 w-4 text-white" />
@@ -98,7 +107,13 @@ const PostVoteClient = ({
           "hover:bg-[#223237] w-full h-full p-2 rounded-full transition cursor-pointer hover:text-blue-600",
           currentVote && "hover:bg-transparent"
         )}
-        onClick={() => vote("DOWN")}
+        onClick={() => {
+          if(session) {
+            vote("DOWN");
+          }else{
+            onOpen("auth")
+          }
+        }}
       >
         {currentVote === "DOWN" ? (
           <TbArrowBigDownFilled className="h-4 w-4 text-white" />
