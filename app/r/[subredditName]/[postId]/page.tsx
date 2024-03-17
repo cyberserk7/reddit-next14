@@ -15,7 +15,7 @@ const PostIdPage = ({
 }) => {
   return (
     <div className="w-full flex justify-between">
-        <div className="w-full lg:w-[65%] h-full px-5">
+        <div className="w-full lg:w-[65%] h-full">
             <Suspense fallback={
                 <div className="w-full h-52">
                 </div>
@@ -30,14 +30,16 @@ const PostIdPage = ({
                 <CommentSection postId={params.postId} />
             </Suspense>
         </div>
-        <Suspense fallback={
-          <div className="w-full lg:w-80 h-36 lg:h-44 rounded-lg">
-            <Skeleton className="w-full h-full bg-skeleton">
-            </Skeleton>
-          </div>
-        }>
-          <SubredditInfoCard subredditName={params.subredditName} />
-        </Suspense>
+        <div className="hidden lg:block">
+            <Suspense fallback={
+            <div className="w-full lg:w-80 h-36 lg:h-44 rounded-lg">
+                <Skeleton className="w-full h-full bg-skeleton">
+                </Skeleton>
+            </div>
+            }>
+            <SubredditInfoCard subredditName={params.subredditName} />
+            </Suspense>
+        </div>
     </div>
   )
 }

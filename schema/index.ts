@@ -44,3 +44,17 @@ export const postVoteSchema = z.object({
 })
 
 export type postVotePayload = z.infer<typeof postVoteSchema>
+
+export const postCommentSchema = z.object({
+    text: z.string().min(1),
+    postId: z.string(),
+})
+
+export type postCommentPayload = z.infer<typeof postCommentSchema>
+
+export const commentVoteSchema = z.object({
+    commentId: z.string(),
+    voteType: z.enum(["UP", "DOWN"]),
+})
+
+export type commentVotePayload = z.infer<typeof commentVoteSchema>
