@@ -17,7 +17,7 @@ const AllFeed = async () => {
        }
     })
   return (
-    <div className="w-full h-full flex flex-col gap-2">
+    <div className="w-full h-full flex flex-col gap-2 items-center">
         {posts.length === 0 ? (
           <span className="text-lg text-muted-foreground font-semibold mt-40">
             No posts to show

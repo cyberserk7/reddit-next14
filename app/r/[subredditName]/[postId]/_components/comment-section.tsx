@@ -1,7 +1,6 @@
 import { db } from "@/lib/db";
 import CommentInput from "./comment-input";
 import CommentsList from "./comments-list";
-import { notFound } from "next/navigation";
 
 interface CommentSectionProps {
   postId: string;
