@@ -90,60 +90,60 @@ const CommentItem = ({comment, votesAmount, currentVote} : CommentProps) => {
                         </div>
                         <span className="text-sm">{comment.text}</span>
                         <div className="flex items-center">
-                        <div>
-                            <CommentVoteClient
-                                initialVotesAmt={votesAmount}
-                                initialVote={currentVote}
-                                commentId={comment.id}
-                            />
-                        </div>
-                            {!comment.replyToId && (
-                                <div  onClick={() => setIsReplying(true)} className="hover:bg-[#223237] h-full rounded-full px-2.5 py-2 flex items-center gap-2 cursor-pointer">
-                                    <div>
-                                        <FaRegMessage className="w-3.5 h-3.5" />
+                            <div>
+                                <CommentVoteClient
+                                    initialVotesAmt={votesAmount}
+                                    initialVote={currentVote}
+                                    commentId={comment.id}
+                                />
+                            </div>
+                                {!comment.replyToId && (
+                                    <div  onClick={() => setIsReplying(true)} className="hover:bg-[#223237] h-full rounded-full px-2.5 py-2 flex items-center gap-2 cursor-pointer">
+                                        <div>
+                                            <FaRegMessage className="w-3.5 h-3.5" />
+                                        </div>
+                                        <button
+                                            className="text-xs font-semibold flex items-center"
+                                        >
+                                        Reply
+                                        </button>
+                                    </div>   
+                                )}
+                            </div>
+                            {isReplying && (
+                                <div className="space-y-2 mt-2">
+                                    <Textarea placeholder="Add a comment" className="outline-none border-gray-800" value={text} onChange={(e) => setText(e.target.value)} />
+                                    <div className="w-full flex justify-end gap-2">
+                                        <Button 
+                                            className="bg-skeleton hover:bg-skeleton/90 text-xs rounded-full" 
+                                            size={"sm"}
+                                            onClick={() => {
+                                                setText("");
+                                                setIsReplying(false);
+                                            }}
+                                            disabled={isPending}
+                                        >
+                                            Cancel
+                                        </Button>
+                                        <Button 
+                                            className="bg-blue-500 hover:bg--blue-500/90 text-xs rounded-full" 
+                                            size={"sm"}
+                                            onClick={() => {
+                                                if(!session) {
+                                                    onOpen("auth")
+                                                }else{
+                                                    CreateComment();
+                                                }
+                                            }}
+                                            disabled={isPending || text.length === 0}
+                                        >
+                                            {isPending && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
+                                            Comment
+                                        </Button>
                                     </div>
-                                    <button
-                                        className="text-xs font-semibold flex items-center"
-                                    >
-                                    Reply
-                                    </button>
-                                </div>   
+                                </div>
                             )}
                         </div>
-                        {isReplying && (
-                            <div className="space-y-2 mt-2">
-                                <Textarea placeholder="Add a comment" className="outline-none border-gray-800" value={text} onChange={(e) => setText(e.target.value)} />
-                                <div className="w-full flex justify-end gap-2">
-                                    <Button 
-                                        className="bg-skeleton hover:bg-skeleton/90 text-xs rounded-full" 
-                                        size={"sm"}
-                                        onClick={() => {
-                                            setText("");
-                                            setIsReplying(false);
-                                        }}
-                                        disabled={isPending}
-                                    >
-                                        Cancel
-                                    </Button>
-                                    <Button 
-                                        className="bg-blue-500 hover:bg--blue-500/90 text-xs rounded-full" 
-                                        size={"sm"}
-                                        onClick={() => {
-                                            if(!session) {
-                                                onOpen("auth")
-                                            }else{
-                                                CreateComment();
-                                            }
-                                        }}
-                                        disabled={isPending || text.length === 0}
-                                    >
-                                        {isPending && <Loader2 className="h-4 w-4 animate-spin mr-1" />}
-                                        Comment
-                                    </Button>
-                                </div>
-                            </div>
-                        )}
-                    </div>
                 </div>
             </div>
         </div>

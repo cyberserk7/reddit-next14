@@ -34,14 +34,14 @@ const CommentsList = async ({comments} : CommentsListProps) => {
               (vote) => vote.userId === session?.user.id
             );
             return (
-              <>
-                <CommentItem 
+              <div>
+                <CommentItem
                   key={comment.id}
                   votesAmount={votesAmount}
                   currentVote={currentVote?.type}
                   comment={comment}
                 />
-                <div>
+                <div className="pl-9">
                   {comment.replies.map((repliedComment, index) => {
                     const votesAmount = repliedComment.votes.reduce(
                       (acc, vote) => {
@@ -55,15 +55,14 @@ const CommentsList = async ({comments} : CommentsListProps) => {
                       (vote) => vote.userId === session?.user.id
                     );
                     return (
-                      <div className="pl-9">     
+                      <div className="">     
                         <CommentItem 
                           comment={repliedComment}
                           key={repliedComment.id}
                           votesAmount={votesAmount}
                           currentVote={currentVote?.type}
                         />      
-                        {index != comment.replies.length - 1 && <div className="h-px bg-gray-800 w-full mb-2" />  }
-                                    
+                        {index != comment.replies.length - 1 && <div className="h-px bg-gray-800 w-full mb-1" />  }            
                       </div>
                     )
                   })}
@@ -71,7 +70,7 @@ const CommentsList = async ({comments} : CommentsListProps) => {
                 {index != comments.length - 1 && (
                   <div className="h-px w-full bg-gray-800 mb-1" />
                 )}
-              </>
+              </div>
             )
         })}
     </div>

@@ -44,7 +44,7 @@ const PostDropdownBtn = ({postId} : PostDropdownBtnProps) => {
             router.push("/")
           }
           router.refresh();
-          toast.success("The post has been deleted successfully");
+          toast.success("Post deleted successfully");
         }
     })
   return (
