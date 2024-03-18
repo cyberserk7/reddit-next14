@@ -29,6 +29,7 @@ const CommentInput = ({postId}:CommentInputProps) => {
             const payload: postCommentPayload = {
                 text: input,
                 postId,
+                replyToId: null,
             }
             await axios.post(`/api/comment`, payload)
         },
@@ -64,7 +65,7 @@ const CommentInput = ({postId}:CommentInputProps) => {
         <div className="w-full flex justify-end gap-2">
             <Button 
                 size="sm" 
-                className="bg-blue-500 hover:bg-blue-500/90 rounded-full"
+                className="bg-blue-500 hover:bg-blue-500/90 rounded-full text-xs"
                 onClick={() => {
                     if(!session) {
                         onOpen("auth")

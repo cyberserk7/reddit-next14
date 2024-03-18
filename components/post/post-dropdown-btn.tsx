@@ -9,15 +9,19 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { Loader2, MoreHorizontal } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 interface PostDropdownBtnProps {
-    postId: string;
+  postId: string;
 }
 
 const PostDropdownBtn = ({postId} : PostDropdownBtnProps) => {
     const router = useRouter();
+
+    const pathname = usePathname();
+    const shouldRedirect = pathname.includes(`/${postId}`);
+
     const {mutate: DeletePost, isPending} = useMutation({
         mutationFn: async () => {
             await axios.delete(`/api/post/${postId}`)
@@ -36,6 +40,9 @@ const PostDropdownBtn = ({postId} : PostDropdownBtnProps) => {
             }
         },
         onSuccess: () => {
+          if(shouldRedirect){
+            router.push("/")
+          }
           router.refresh();
           toast.success("The post has been deleted successfully");
         }

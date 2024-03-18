@@ -20,19 +20,19 @@ const CommentSection = async ({postId} : CommentSectionProps) => {
         include: {
           author: true,
           votes: true,
+          post: true,
         }
       },
       post: true,
+    },
+    orderBy: {
+      createdAt: "desc"
     }
 
   })
 
-  if(!comments) {
-    return notFound();
-  }
-
   return (
-    <div className="w-full space-y-5 px-5">
+    <div className="w-full space-y-5 lg:px-5">
       <CommentInput postId={postId} />
       {comments.length === 0 ? (
         <span className="text-md font-semibold text-muted-foreground">

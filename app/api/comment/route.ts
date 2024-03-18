@@ -8,7 +8,7 @@ import { db } from "@/lib/db";
 export async function POST(req: Request) {
     try {
         const payload = await req.json();
-        const {postId, text} = postCommentSchema.parse(payload);
+        const {postId, text, replyToId} = postCommentSchema.parse(payload);
         const session = await getServerSession(authOptions);
         if(!session) {
             return new NextResponse("Unauthorized", {status: 401});
@@ -26,6 +26,7 @@ export async function POST(req: Request) {
                 postId,
                 authorId: session.user.id,
                 text,
+                replyToId,
             }
         })
         return new NextResponse("OK");

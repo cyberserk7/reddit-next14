@@ -39,7 +39,7 @@ const CommentVoteClient = ({
         voteType,
       };
 
-      await axios.patch(`/api/comments/${commentId}`, payload);
+      await axios.patch(`/api/comment/${commentId}`, payload);
     },
     onError: (err, voteType) => {
       if (voteType === "UP") {

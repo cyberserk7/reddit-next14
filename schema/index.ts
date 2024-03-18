@@ -48,6 +48,7 @@ export type postVotePayload = z.infer<typeof postVoteSchema>
 export const postCommentSchema = z.object({
     text: z.string().min(1),
     postId: z.string(),
+    replyToId: z.string().nullable(),
 })
 
 export type postCommentPayload = z.infer<typeof postCommentSchema>

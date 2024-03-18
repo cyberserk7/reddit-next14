@@ -56,7 +56,7 @@ const PostComponent = ({
         className
       )}>
         
-        <div className="px-5 py-4 flex justify-between items-center">
+        <div className="lg:px-5 lg:py-4 flex justify-between items-center">
           <div className="w-0 flex-1 space-y-2">
             <div className="max-h-40 text-xs text-gray-200 flex items-center justify-between">
               {isSubredditPage ? (

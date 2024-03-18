@@ -15,7 +15,7 @@ const PostIdPage = ({
 }) => {
   return (
     <div className="w-full flex justify-between">
-        <div className="w-full lg:w-[65%] h-full">
+        <div className="w-full lg:w-[65%] h-full space-y-5 lg:space-y-0">
             <Suspense fallback={
                 <div className="w-full h-52">
                 </div>
