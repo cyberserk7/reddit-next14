@@ -19,7 +19,7 @@ const Navbar = async () => {
             <Image
               src="/logo.png"
               alt="Logo png"
-              className="object-contain h-8 md:h-8 w-fit"
+              className="object-contain h-8 w-32"
               height={500}
               width={500}
               priority
