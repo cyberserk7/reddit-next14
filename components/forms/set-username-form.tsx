@@ -46,7 +46,7 @@ const SetUsernameForm = () => {
             }
         },
         onSuccess: () => {
-            router.refresh();
+            window.location.reload();
         }
     })
 
