@@ -18,11 +18,12 @@ const PopularFeed = async () => {
         }
       })
       const subscribedCommunitiesId = subscribedCommunities.map(({subreddit}) => subreddit.id)
-
-      whereClause = {
-        subreddit: {
-          id: {
-            in: subscribedCommunitiesId
+      if(subscribedCommunitiesId.length > 0) {
+        whereClause = {
+          subreddit: {
+            id: {
+              in: subscribedCommunitiesId
+            }
           }
         }
       }

@@ -19,11 +19,12 @@ const HomeFeed = async () => {
         }
       })
       const subscribedCommunitiesId = subscribedCommunities.map(({subreddit}) => subreddit.id)
-
-      whereClause = {
-        subreddit: {
-          id: {
-            in: subscribedCommunitiesId
+      if(subscribedCommunities.length > 0) {
+        whereClause = {
+          subreddit: {
+            id: {
+              in: subscribedCommunitiesId
+            }
           }
         }
       }
