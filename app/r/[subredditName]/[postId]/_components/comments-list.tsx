@@ -1,8 +1,7 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Comment, CommentVote, Post, User, Vote } from "@prisma/client"
+import { Comment, CommentVote, Post, User } from "@prisma/client"
 import { getServerSession } from "next-auth";
 import CommentItem from "./comment";
-import RepliedCommentItem from "./replied-comment-item";
 
 interface CommentsListProps {
     comments: (Comment & {
@@ -34,9 +33,9 @@ const CommentsList = async ({comments} : CommentsListProps) => {
               (vote) => vote.userId === session?.user.id
             );
             return (
-              <div>
+              <div key={comment.id}>
                 <CommentItem
-                  key={comment.id}
+                  
                   votesAmount={votesAmount}
                   currentVote={currentVote?.type}
                   comment={comment}
@@ -55,10 +54,10 @@ const CommentsList = async ({comments} : CommentsListProps) => {
                       (vote) => vote.userId === session?.user.id
                     );
                     return (
-                      <div className="">     
+                      <div className="" key={repliedComment.id}>     
                         <CommentItem 
                           comment={repliedComment}
-                          key={repliedComment.id}
+                          
                           votesAmount={votesAmount}
                           currentVote={currentVote?.type}
                         />      
