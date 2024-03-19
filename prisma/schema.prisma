@@ -92,9 +92,9 @@ model Post {
   videoURL    String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
-  author      User      @relation(fields: [authorId], references: [id])
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId    String
-  subreddit   Subreddit @relation(fields: [subredditId], references: [id])
+  subreddit   Subreddit @relation(fields: [subredditId], references: [id], onDelete: Cascade)
   subredditId String
   comments    Comment[]
   votes       Vote[]
