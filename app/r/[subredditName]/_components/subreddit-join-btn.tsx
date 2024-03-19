@@ -41,7 +41,7 @@ const SubredditJoinBtn = ({hasJoined, subredditName, isCreator , className} : Su
     <Button 
         size={"sm"} 
         className={cn("px-3 rounded-full bg-blue-500 hover:bg-blue-500/90",
-        hasJoined && "bg-gray-400 text-gray-200", className)}
+        hasJoined && "bg-gray-400 text-gray-200 hover:bg-gray-400/90", className)}
         disabled={isCreator}
         onClick={() => {
             if(!session) {

@@ -8,6 +8,7 @@ import { VoteType } from "@prisma/client";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { TbArrowBigUp } from "react-icons/tb";
 import { TbArrowBigUpFilled } from "react-icons/tb";
@@ -31,6 +32,7 @@ const PostVoteClient = ({
   const [votesAmt, setVotesAmt] = useState<number>(initialVotesAmt);
   const [currentVote, setCurrentVote] = useState(initialVote);
   const prevVote = usePrevious(currentVote);
+  const router = useRouter();
 
   useEffect(() => {
     setCurrentVote(initialVote);
@@ -72,6 +74,9 @@ const PostVoteClient = ({
         }
       }
     },
+    onSuccess: () => {
+      router.refresh();
+    }
   });
 
   return (
