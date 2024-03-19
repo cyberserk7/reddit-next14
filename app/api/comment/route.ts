@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { postCommentSchema } from "@/schema";
 import { db } from "@/lib/db";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(req: Request) {
     try {

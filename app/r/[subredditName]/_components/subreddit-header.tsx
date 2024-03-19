@@ -1,4 +1,4 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import SubredditAvatar from "@/components/subreddit-avatar";
 import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";

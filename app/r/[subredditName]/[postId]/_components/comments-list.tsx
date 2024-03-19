@@ -1,7 +1,8 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import { Comment, CommentVote, Post, User } from "@prisma/client"
 import { getServerSession } from "next-auth";
 import CommentItem from "./comment";
+import { authOptions } from "@/lib/auth";
 
 interface CommentsListProps {
     comments: (Comment & {

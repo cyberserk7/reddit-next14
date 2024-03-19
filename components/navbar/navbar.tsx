@@ -2,7 +2,7 @@ import Image from "next/image"
 import LoginButton from "./login-button";
 import SearchInput from "./search-input";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import NavUser from "./nav-user";
 import CreateCommunityBtn from "./create-community-btn";
 import MobileSidebarButton from "../sidebar/mobile-sidebar-button";

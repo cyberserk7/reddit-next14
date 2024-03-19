@@ -2,8 +2,8 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { communitySchema, usernameSchema } from "@/schema";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { z } from "zod";
+import { authOptions } from "@/lib/auth";
 
 export async function POST(req: Request){
     try{

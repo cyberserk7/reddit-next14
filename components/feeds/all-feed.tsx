@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import PostComponent from "../post-component";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
 
 const AllFeed = async () => {

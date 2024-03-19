@@ -1,4 +1,5 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
+import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { postVoteSchema } from "@/schema";
 import { getServerSession } from "next-auth";

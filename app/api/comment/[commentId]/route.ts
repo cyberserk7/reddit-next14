@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "../../auth/[...nextauth]/route";
 import { db } from "@/lib/db";
 import { commentVoteSchema } from "@/schema";
+import { authOptions } from "@/lib/auth";
 
 export async function DELETE(req: Request, {
     params,

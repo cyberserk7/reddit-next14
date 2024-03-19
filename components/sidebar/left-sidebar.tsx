@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react"
 import CommunitiesSection from "./communities-section"
 import FeedRoutes from "./feed-routes"
 import { getServerSession } from "next-auth"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { authOptions } from "@/lib/auth";
 import CommunitiesListSection from "./communities-list-section"
 import { Suspense } from "react"
 

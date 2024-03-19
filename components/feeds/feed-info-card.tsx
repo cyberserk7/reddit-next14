@@ -1,4 +1,4 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { cn } from "@/lib/utils";
 import { Comment, Post, Subreddit, Vote } from "@prisma/client";

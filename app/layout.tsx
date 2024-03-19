@@ -6,12 +6,12 @@ import Navbar from "@/components/navbar/navbar";
 import { ModalProvider } from "@/providers/modal-provider";
 import LeftSidebar from "@/components/sidebar/left-sidebar";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 import ClientUsernameModalSetter from "@/providers/username-modal-setter";
 import { SessionProvider } from "next-auth/react";
 import AuthProvider from "@/providers/auth-provider";
 import ReactQueryProvider from "@/providers/react-query-provider";
 import { Toaster } from "sonner";
+import { authOptions } from "@/lib/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
