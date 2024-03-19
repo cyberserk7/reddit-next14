@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { Input } from "../ui/input"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useCommunityModal } from "@/hooks/use-community-modal"
 import { Button } from "../ui/button"
 import { cn } from "@/lib/utils"
@@ -24,7 +24,7 @@ const CreateCommunityForm = () => {
         return /\s/.test(input);
     }
 
-    const {mutate: CreateCommunity, isPending} = useMutation({
+    const {mutate: CreateCommunity, isPending, data} = useMutation({
         mutationFn: async () => {
             const payload: CreateCommunityPayload = {
                 name: input,
@@ -51,11 +51,14 @@ const CreateCommunityForm = () => {
         },
         onSuccess: async (data) => {
           onClose();
-          await router.prefetch(`/r/${data}`)
           router.push(`/r/${data}`);
           router.refresh();
         }
     })
+
+    useEffect(() => {
+      router.prefetch(`/r/${data}`)
+    }, [router])
 
   return (
     <div className="w-full h-fit text-white space-y-5">
