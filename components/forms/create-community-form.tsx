@@ -49,8 +49,9 @@ const CreateCommunityForm = () => {
                 return toast.error("Something went wrong")
             }
         },
-        onSuccess: (data) => {
+        onSuccess: async (data) => {
           onClose();
+          await router.prefetch(`/r/${data}`)
           router.push(`/r/${data}`);
           router.refresh();
         }
