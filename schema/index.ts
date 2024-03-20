@@ -59,3 +59,10 @@ export const commentVoteSchema = z.object({
 })
 
 export type commentVotePayload = z.infer<typeof commentVoteSchema>
+
+export const editUserSettings = z.object({
+    username: z.string(),
+    image: z.string(),
+})
+
+export type editUserSettingsPayload = z.infer<typeof editUserSettings>

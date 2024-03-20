@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { Skeleton } from "../ui/skeleton";
 import UserAvatar from "../user-avatar";
 import { signOut } from "next-auth/react";
+import { useModal } from "@/hooks/use-modal-store";
+import { User } from "@prisma/client";
 
 
 interface NavUserProps {
@@ -19,6 +21,7 @@ interface NavUserProps {
 
 const NavUser = ({imageUrl} : NavUserProps) => {
   const [isMounted, setIsMounted] = useState(false);
+  const {onOpen} = useModal();
   useEffect(() => {
     setIsMounted(true);
   }, [])
@@ -32,12 +35,16 @@ const NavUser = ({imageUrl} : NavUserProps) => {
 
   return (
     <div className="flex items-center gap-2">
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <DropdownMenuTrigger className="outline-none">
           <UserAvatar imageUrl={imageUrl} />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="center" className=" bg-[#0B1416] border-gray-800 text-white p-0 flex flex-col items-center">
-          <DropdownMenuItem className="hover:bg-transparent">
+          <DropdownMenuItem className="hover:bg-transparent"
+            onClick={() => {
+              onOpen("userSettings")
+            }}
+          >
             Settings
           </DropdownMenuItem>
           <DropdownMenuSeparator className="bg-gray-800 w-full" />

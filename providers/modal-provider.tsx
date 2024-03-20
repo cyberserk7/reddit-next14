@@ -6,6 +6,7 @@ import EditSubredditModal from "@/components/modal/edit-subreddit-modal";
 import AuthModal from "@/components/modal/login-modal"
 
 import SetUsernameModal from "@/components/modal/set-username-modal";
+import UserSettingsModal from "@/components/modal/user-settings";
 import { useEffect, useState } from "react"
 
 export const ModalProvider = () => {
@@ -25,6 +26,7 @@ export const ModalProvider = () => {
             <CreateCommunityModal />
             <EditSubredditModal />
             <DeleteCommunityModal />
+            <UserSettingsModal />
         </>
     )
 }

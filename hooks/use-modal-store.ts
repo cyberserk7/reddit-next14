@@ -1,11 +1,12 @@
 import { Subreddit } from "@prisma/client";
 import { create } from "zustand";
 
-export type ModalType = "editSubreddit" | "createCommunity" | "auth" | "deleteCommunity" | "searchCommunity";
+export type ModalType = "editSubreddit" | "createCommunity" | "auth" | "deleteCommunity" | "searchCommunity" | "userSettings";
 
 interface ModalData {
     subreddit?: Subreddit;
     subredditName?: string;
+    userId?: string
 }
 
 interface ModalStore {
