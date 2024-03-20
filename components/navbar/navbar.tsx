@@ -13,7 +13,7 @@ const Navbar = async () => {
   return (
     <nav className="fixed top-0 inset-x-0 h-16 border-b border-gray-800 z-10 px-4 md:px-5 lg:px-8 xl:px-10 flex items-center justify-between bg-[#0B1416]">
       <div className="h-max w-full flex justify-between items-center">
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-2 items-center">
           <MobileSidebarButton />
           <a href="/">
             <Image
@@ -26,7 +26,7 @@ const Navbar = async () => {
             />
           </a>
         </div>
-        <SearchInput />
+        <SearchInput className="hidden lg:flex lg:w-[45%]" />
         {!session ? (
           <LoginButton />
         ) : (

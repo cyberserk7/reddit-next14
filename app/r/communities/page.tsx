@@ -29,8 +29,6 @@ const CommunitiesPage = async ({
             }
         }
     })
-    
-    console.log(communities)
 
     return (
         <div className="w-full h-full flex justify-center">

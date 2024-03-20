@@ -5,8 +5,13 @@ import { Input } from "../ui/input"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import qs from "query-string"
+import { cn } from "@/lib/utils"
 
-const SearchInput = () => {
+interface SearchInputProps {
+  className?: string;
+}
+
+const SearchInput = ({ className } : SearchInputProps) => {
   const [input, setInput] = useState("");
   const [edited, setEdited] = useState(false);
   const router = useRouter();
@@ -25,7 +30,7 @@ const SearchInput = () => {
 
   return (
     <div 
-      className="h-10 w-[45%] rounded-full bg-[#1A282D] hidden lg:flex items-center px-5 gap-2 cursor-text"
+      className={cn("h-10 rounded-full bg-[#1A282D] flex items-center px-5 gap-2 cursor-text", className)}
     >
         <Search className="h-5 w-5 text-gray-400" />
         <Input 
