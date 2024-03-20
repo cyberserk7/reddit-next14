@@ -15,7 +15,7 @@ export default function Home() {
         </Suspense>
       </div>
       <Suspense fallback ={
-        <div className="w-80 h-80">
+        <div className="w-80 h-80 hidden lg:block">
           <Skeleton className="w-full h-full bg-skeleton">
           </Skeleton>
         </div>
