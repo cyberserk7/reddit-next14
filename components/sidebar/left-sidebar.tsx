@@ -8,42 +8,35 @@ import { PiScroll } from "react-icons/pi";
 import { HiOutlineScale } from "react-icons/hi2";
 import { HiOutlineDocumentText } from "react-icons/hi";
 import CommunitiesBtn from "./communities-btn";
+import Misc from "./misc";
+import SettingsBtn from "./settings-btn";
+import LogoutBtn from "./logout-btn";
 
 const LeftSidebar = async () => {
   const session = await getServerSession(authOptions)
 
   return (
     <div className="h-full lg:h-[calc(100vh-64px)] w-60 z-10 bg-[#0B1416] flex flex-col items-center py-5 border-r border-gray-800 justify-between">
-        <div className="w-full flex flex-col items-center  space-y-4">
-          <FeedRoutes />
-          <div className="h-[1px] bg-gray-800 w-[90%]" />
-            {session && (
-              <Suspense>
-                <CommunitiesListSection userId={session.user.id} />
-              </Suspense>
-            )}
-            <div className="w-[90%]">
-              <CommunitiesBtn />
-              <Button className="rounded-xl py-2.5 px-5 w-full flex justify-start items-center hover:bg-[#131F23] text-sm bg bg-transparent">
-                <div className="w-max h-max flex items-center gap-3">
-                    <PiScroll className="w-6 h-6" />
-                    <span className="text-sm font-normal text-white">Content Policy</span>
-                </div>
-              </Button>
-              <Button className="rounded-xl py-2.5 px-5 w-full flex justify-start items-center hover:bg-[#131F23] text-sm bg bg-transparent">
-                <div className="w-max h-max flex items-center gap-3">
-                    <HiOutlineScale className="w-6 h-6" />
-                    <span className="text-sm font-normal text-white">Privacy Policy</span>
-                </div>
-              </Button>
-              <Button className="rounded-xl py-2.5 px-5 w-full flex justify-start items-center hover:bg-[#131F23] text-sm bg bg-transparent">
-                <div className="w-max h-max flex items-center gap-3">
-                    <HiOutlineDocumentText className="w-6 h-6" />
-                    <span className="text-sm font-normal text-white">User Agreement</span>
-                </div>
-              </Button>
+      <div className="w-full flex flex-col items-center space-y-4">
+        <FeedRoutes />
+        <div className="h-[1px] bg-gray-800 w-[90%]" />
+          {session && (
+            <Suspense>
+              <CommunitiesListSection userId={session.user.id} />
+            </Suspense>
+          )}
+          <div className="w-[90%]">
+            <CommunitiesBtn />
+            <Misc />
           </div>
-        </div>
+          <div className="w-[90%] h-px bg-gray-800" />
+          {session && (
+            <div className="w-[90%]">
+              <SettingsBtn />
+              <LogoutBtn />
+            </div>
+          )}
+      </div>
     </div>
   )
 }
