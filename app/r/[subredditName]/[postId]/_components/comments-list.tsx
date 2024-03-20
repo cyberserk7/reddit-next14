@@ -62,7 +62,7 @@ const CommentsList = async ({comments} : CommentsListProps) => {
                           votesAmount={votesAmount}
                           currentVote={currentVote?.type}
                         />      
-                        {index != comment.replies.length - 1 && <div className="h-px bg-gray-800 w-full mb-1" />  }            
+                        {index != comment.replies.length - 1 && <div className="h-px bg-gray-800 w-full mb-3" />  }            
                       </div>
                     )
                   })}
