@@ -28,31 +28,32 @@ const UserSettingsModal = () => {
     const [username, setUsername] = useState("");
     const router = useRouter();
 
-    if(!session){
-        return null;
-    }
+    useEffect(() => {
+        const updateUserSettings = () => {
+            if (session && session.user) {
+                if (session.user.image) {
+                    setImageUrl(session.user.image);
+                }
+                if (session.user.username) {
+                    setUsername(session.user.username);
+                }
+            }
+        };
+    
+        updateUserSettings();
+    }, [session, setImageUrl, setUsername]);
 
     const hasWhitespace = () => {
         return /\s/.test(username);
     }
 
-    
-    useEffect(() => {
-        if(session?.user.image) {
-            setImageUrl(session.user.image);
-        }
-        if(session){
-            setUsername(session.user.username!);
-        }
-    }, [session, setImageUrl, setUsername]);
-    
     const {mutate: EditSetting, isPending} = useMutation({
         mutationFn: async () => {
             const payload: editUserSettingsPayload = {
                 username,
                 image: imageUrl!,
             }
-            await axios.patch(`/api/user/${session.user.id}/edit`, payload)
+            await axios.patch(`/api/user/${session?.user.id}/edit`, payload)
         },
         onError: (err) => {
             if(err instanceof AxiosError){
@@ -75,10 +76,14 @@ const UserSettingsModal = () => {
         }
     })
 
+    if(!session){
+        return null;
+    }
+    
     
   return (
     <Dialog open={isModalOpen} onOpenChange={() => onClose()}>
-      <DialogContent className="bg-[#0B1416] border-none outline-none max-w-xs">
+      <DialogContent className="bg-[#0B1416] border-none outline-none max-w-sm">
         <h1 className="text-lg font-semibold">User Settings</h1>
         <div className="w-full flex items-center gap-2 flex-col">
             {imageUrl ? 
@@ -124,7 +129,7 @@ const UserSettingsModal = () => {
                 </Button>
                 <Button 
                     className="w-full bg-blue-500 hover:bg-blue-500/90"
-                    disabled={username.length === 0 || hasWhitespace() || isPending}
+                    disabled={username.length === 0 || hasWhitespace() || isPending || !imageUrl}
                     onClick={() => {
                         EditSetting();
                     }}
