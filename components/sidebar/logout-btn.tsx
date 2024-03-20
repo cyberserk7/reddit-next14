@@ -1,6 +1,6 @@
 "use client"
 
-import { TbLogout } from "react-icons/tb";
+import { IoLogOutOutline } from "react-icons/io5";
 import { Button } from "../ui/button";
 import { signOut } from "next-auth/react";
 
@@ -11,7 +11,7 @@ const LogoutBtn = () => {
       onClick={() => signOut()}
     >
         <div className="w-max h-max flex items-center justify-center gap-3">
-            <TbLogout className="w-6 h-6" />
+            <IoLogOutOutline className="w-6 h-6" />
             <span className="text-sm font-normal text-white">Logout</span>
         </div>
     </Button>

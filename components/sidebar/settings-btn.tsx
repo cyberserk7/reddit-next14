@@ -1,6 +1,6 @@
 "use client"
 
-import { Settings} from "lucide-react"
+import { RiUserSettingsLine } from "react-icons/ri";
 import { Button } from "../ui/button"
 import { useModal } from "@/hooks/use-modal-store"
 
@@ -14,7 +14,7 @@ const SettingsBtn = () => {
       }}
     >
         <div className="w-max h-max flex items-center justify-center gap-3">
-            <Settings className="w-6 h-6" />
+            <RiUserSettingsLine className="w-6 h-6" />
             <span className="text-sm font-normal text-white">Settings</span>
         </div>
     </Button>

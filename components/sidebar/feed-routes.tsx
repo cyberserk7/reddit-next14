@@ -6,7 +6,7 @@ import { MdInsertChartOutlined } from "react-icons/md";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useSheet } from "@/hooks/use-hamburger";
+import { PiChartLine } from "react-icons/pi";
 
 const routes = [
     {
@@ -22,7 +22,7 @@ const routes = [
     {
       title: "All",
       href: "/r/all",
-      icon: MdInsertChartOutlined,
+      icon: PiChartLine,
     },
   ];
 
