@@ -11,12 +11,13 @@ import CommunitiesBtn from "./communities-btn";
 import Misc from "./misc";
 import SettingsBtn from "./settings-btn";
 import LogoutBtn from "./logout-btn";
+import { ScrollArea } from "../ui/scroll-area";
 
 const LeftSidebar = async () => {
   const session = await getServerSession(authOptions)
 
   return (
-    <div className="h-full lg:h-[calc(100vh-64px)] w-60 z-10 bg-[#0B1416] flex flex-col items-center py-5 border-r border-gray-800 justify-between">
+    <ScrollArea className="h-full lg:h-[calc(100vh-64px)] w-60 z-10 bg-[#0B1416] flex flex-col items-center py-5 border-r border-gray-800 justify-between overflow-y-auto">
       <div className="w-full flex flex-col items-center space-y-4">
         <FeedRoutes />
         <div className="h-[1px] bg-gray-800 w-[90%]" />
@@ -37,7 +38,7 @@ const LeftSidebar = async () => {
             </div>
           )}
       </div>
-    </div>
+    </ScrollArea>
   )
 }
 

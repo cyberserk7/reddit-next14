@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import SubredditAvatar from "../subreddit-avatar";
 import Link from "next/link";
 import Image from "next/image";
+import { ScrollArea } from "../ui/scroll-area";
 
 const FeedInfoCard = async () => {
     const session = await getServerSession(authOptions);
@@ -60,7 +61,7 @@ const FeedInfoCard = async () => {
         take: 6
     })
   return (
-    <div className={cn("hidden lg:block sticky w-80 rounded-lg h-max bg-[#04090A] px-5 py-3 text-xs transition space-y-5")}>
+    <div className={cn("hidden lg:block sticky top-[84px] w-80 rounded-lg h-max bg-[#04090A] px-5 py-3 text-xs transition space-y-5")}>
         <h1 className="uppercase text-gray-400">
             {posts.length === 0 ? "TOP COMMUNITIES" : "TOP POSTS"}
         </h1>
