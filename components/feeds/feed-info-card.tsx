@@ -90,7 +90,7 @@ const FeedInfoCard = async () => {
                     }, 0);
                     return(
                         <>
-                            <Link href={`/r/${post.subreddit.name}/${post.id}`} key={post.id} className="flex w-full h-20 justify-between items-center relative">
+                            <Link href={`/r/${post.subreddit.name}/${post.id}`} key={post.id} className="flex w-full h-max justify-between items-center relative">
                                 <div className={cn("w-[65%] h-full flex flex-col justify-between", !post.imageURL && "w-full")}>
                                     <div className="flex gap-1 items-center">
                                         <SubredditAvatar subredditName={post.subreddit.name} imageUrl={post.subreddit.subredditImageURL} className="h-7" />
@@ -117,9 +117,11 @@ const FeedInfoCard = async () => {
                                     width={250}
                                 />}
                             </Link>
+                            
                             {index != posts.length - 1 && (
                                 <div className="h-px bg-gray-800 w-full" />
                             )}
+                           
                         </>
                     )
                 })}

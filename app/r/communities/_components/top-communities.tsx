@@ -1,6 +1,7 @@
 import SearchInput from "@/components/navbar/search-input";
 import SubredditAvatar from "@/components/subreddit-avatar";
 import { Subreddit , Subscribe} from "@prisma/client"
+import Link from "next/link";
 
 interface TopCommunitiesProps {
     communities: (Subreddit & {
@@ -14,7 +15,7 @@ const TopCommunities = ({communities} : TopCommunitiesProps) => {
       <div className="space-y-2">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-2">
           {communities.map((community, index) => (
-            <div key={community.id} className="flex">
+            <Link href={`/r/${community.name}`} key={community.id} className="flex">
               <div className="w-14 h-14 flex items-center justify-center">
                 <span className="text-sm font-semibold">
                   {index+1}
@@ -31,7 +32,7 @@ const TopCommunities = ({communities} : TopCommunitiesProps) => {
                   {community.subscriptions.length} {community.subscriptions.length === 1 ? "member" : "members"}
                 </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
