@@ -3,6 +3,7 @@ import PostComponent from "@/components/post-component";
 import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface SubredditFeedProps {
     subredditName: string;
@@ -53,15 +54,17 @@ const SubredditFeed = async ({subredditName} : SubredditFeedProps) => {
             )
 
             return (
-                <PostComponent 
-                    index={index}
-                    key={post.id}
-                    voteAmount={voteAmount}
-                    currentVote={currentVote}
-                    isSubredditPage={subredditName ? true : false}
-                    commentAmount={post.comments.length}
-                    post={post}
-                />
+                <>
+                    <PostComponent 
+                        index={index}
+                        key={post.id}
+                        voteAmount={voteAmount}
+                        currentVote={currentVote}
+                        isSubredditPage={subredditName ? true : false}
+                        commentAmount={post.comments.length}
+                        post={post}
+                    />
+                </>
             )
         })}
     </div>

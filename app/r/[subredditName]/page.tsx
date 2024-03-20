@@ -15,7 +15,7 @@ const SubredditPage =  ({
   return (
     <div className="h-full w-full flex flex-col">
       <Suspense fallback={
-        <div className="w-full h-44">
+        <div className="w-full h-28 md:h-32 lg:h-44">
           <Skeleton className="w-full h-full bg-skeleton">
           </Skeleton>
         </div>

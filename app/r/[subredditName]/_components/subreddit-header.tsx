@@ -41,7 +41,7 @@ const SubredditPageHeader = async ({ subredditName } : SubredditPageHeaderProps)
 
     const isCreator = session?.user.id === subreddit.creatorId ? true : false;
   return (
-    <div className="w-full h-28 md:h-32 lg:h-44 rounded-lg bg-skeleton pl-1 flex items-end relative group">
+    <div className="w-full h-28 md:h-32 lg:h-44 rounded-lg bg-skeleton pl-1 lg:pl-5 flex items-end relative group">
         {/* Subreddit cover image */}
         {subreddit.coverImageURL ? (
             <Image 
