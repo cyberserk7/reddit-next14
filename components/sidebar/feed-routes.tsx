@@ -29,7 +29,6 @@ const routes = [
 const FeedRoutes = () => {
     const pathname = usePathname();
     const router = useRouter();
-    const sheet = useSheet();
 
   return (
     <div className="w-[90%] h-fit">
@@ -37,22 +36,19 @@ const FeedRoutes = () => {
             const Icon = route.icon;
             const isActive = pathname === route.href;
             return (
-                <button
+                <Link
                     className={cn(
                     "rounded-xl py-2.5 px-5 w-full flex items-center hover:bg-[#131F23]",
                     isActive && "bg-[#1A282D] hover:bg-[#1A282D]"
                     )}
                     key={route.title}
-                    onClick={() => {
-                      router.push(`${route.href}`);
-                      sheet.onClose();
-                    }}
+                    href={route.href}
                 >
                     <div className="w-max h-max flex items-center justify-center gap-3">
                         <Icon className="w-6 h-6" />
                         <span className="text-sm font-normal text-white">{route.title}</span>
                     </div>
-                </button>
+                </Link>
             )
         })}
     </div>
