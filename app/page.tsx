@@ -6,7 +6,7 @@ import { Suspense } from "react";
 
 export default function Home() {
   return (
-    <main className="w-max h-max flex justify-between">
+    <main className="w-full h-max flex justify-between">
       <div className="w-full lg:w-[65%] h-max">
         <Suspense fallback={<FeedSkeleton isSubredditPage={false} />}>
           <HomeFeed />
